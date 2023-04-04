@@ -9,12 +9,13 @@ import Button from '@mui/material/Button';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Box from '@mui/material/Box';
+import SnappitIcon from '../../../images/snappit-icon.png';
+import {ReactComponent as SaveIcon} from "../../../images/snappit-save-code.svg";
+import {ReactComponent as ShareIcon} from "../../../images/snappit-share-code.svg";
+import {ReactComponent as AccessIcon} from "../../../images/snappit-access.svg";
+import {ReactComponent as TeamShareIcon} from "../../../images/team-share.svg";
 
-import SnappitLogo from "../../../images/snappit-library.png"
-import SnappitIcon from "../../../images/snappit-icon.png"
-import SnappitSaveIcon from "../../../images/snappit-save-code.jpg"
-import SnappitShareIcon from "../../../images/snappit-share-code.jpg"
-import SnappitAccessIcon from "../../../images/snappit-access.jpg"
+
 
 import "./LandingPage.css"
 
@@ -39,7 +40,7 @@ export default class LandingPage extends Component {
         return (
             <div class="lp-root" style={{ backgroundColor: "#101728" }}>
                 <Container maxHeight="xl">
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }} style={{ paddingTop: "20px", }}>
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "20px", }}>
                         <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" />
 
                         <Typography
@@ -50,7 +51,7 @@ export default class LandingPage extends Component {
                             xs="2"
                             sx={{
                                 mr: 2,
-                                display: { xs: 'none', md: 'flex' },
+                                display: 'flex',
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
@@ -66,16 +67,16 @@ export default class LandingPage extends Component {
                     </Box>
 
 
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={12} md={6} style={{ marginBottom: "20px" }}>
+                    <Grid container spacing={2} style={{ margin: "40px 0 0 0" }}>
+                        <Grid item xs={12} sm={12} md={3} >
                             <Typography
                                 variant="h6"
-                                noWrap
                                 component="a"
                                 href="/"
                                 sx={{
                                     mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
+                                    wordWrap: "break-word",
+                                    display: 'flex',
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',
@@ -87,13 +88,16 @@ export default class LandingPage extends Component {
                                     justifyContent: "center"
                                 }}
                             >
-                                Store <br /> Share <br /> Access <br />
+                                Store Share  Access 
                                 Anytime
                             </Typography>
-                            <ColorButton variant="contained">Get Started</ColorButton>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={6}>
-                            <img alt="logo" src={SnappitLogo} height="550px" width="450px" />
+                        <Grid item xs={12} sm={12} md={9}>
+                            <TeamShareIcon/>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={9}>
+                        <ColorButton variant="contained">Get Started</ColorButton>
+
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={12} style={{ marginBottom: "100px" }}>
@@ -145,7 +149,7 @@ export default class LandingPage extends Component {
                                 href="/"
                                 sx={{
                                     mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
+                                    display: 'flex',
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',
@@ -179,12 +183,12 @@ export default class LandingPage extends Component {
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} style={{ marginBottom: "80px", marginTop: "70px" }}>
-                            <img alt="logo" src={SnappitSaveIcon} height="500px" width="450px" />
+                        <SaveIcon/>
                         </Grid>
 
                         {/* Share section */}
                         <Grid item xs={12} sm={12} md={6} style={{ marginBottom: "80px", marginTop: "70px" }}>
-                            <img alt="logo" src={SnappitShareIcon} height="500px" width="450px" />
+                            <ShareIcon />
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} style={{ marginBottom: "80px", marginTop: "30px" }}>
                             <Typography
@@ -193,7 +197,7 @@ export default class LandingPage extends Component {
                                 href="/"
                                 sx={{
                                     mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
+                                    display: 'flex',
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',
@@ -236,7 +240,7 @@ export default class LandingPage extends Component {
                                 href="/"
                                 sx={{
                                     mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
+                                    display: 'flex',
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',
@@ -270,7 +274,7 @@ export default class LandingPage extends Component {
                             </Typography>
                         </Grid>
                         <Grid item xs={12} style={{ marginBottom: "80px", marginTop: "20px" }}>
-                            <img alt="logo" src={SnappitAccessIcon} height="400px" width="600px" />
+                            <AccessIcon/>
                         </Grid>
 
                         {/* Bottom section */}
@@ -281,7 +285,7 @@ export default class LandingPage extends Component {
                                 href="/"
                                 sx={{
                                     mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
+                                    display: 'flex',
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',
@@ -295,7 +299,7 @@ export default class LandingPage extends Component {
                                 Connect
                             </Typography>
 
-                            <Box sx={{ display: { xs: 'none', md: 'flex' } }} style={{ justifyContent: "center" }}>
+                            <Box sx={{ display: 'flex' }} style={{ justifyContent: "center" }}>
                                 <Avatar xs={2} sx={{ bgcolor: "#101728" }}  >
                                     <TwitterIcon />
                                 </Avatar>
