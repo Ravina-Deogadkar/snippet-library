@@ -16,7 +16,6 @@ import {ReactComponent as AccessIcon} from "../../../images/snappit-access.svg";
 import {ReactComponent as TeamShareIcon} from "../../../images/team-share.svg";
 
 
-
 import "./LandingPage.css"
 
 const Item = styled(Paper)(({ theme }) => ({
