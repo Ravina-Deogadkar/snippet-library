@@ -9,12 +9,12 @@ import Button from '@mui/material/Button';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
 import SnappitIcon from '../../../images/snappit-icon.png';
 import {ReactComponent as SaveIcon} from "../../../images/snappit-save-code.svg";
 import {ReactComponent as ShareIcon} from "../../../images/snappit-share-code.svg";
 import {ReactComponent as AccessIcon} from "../../../images/snappit-access.svg";
 import {ReactComponent as TeamShareIcon} from "../../../images/team-share.svg";
-
 
 import "./LandingPage.css"
 
@@ -37,8 +37,9 @@ const ColorButton = styled(Button)(({ theme }) => ({
 export default class LandingPage extends Component {
     render() {
         return (
-            <div class="lp-root" style={{ backgroundColor: "#101728" }}>
-                <Container maxHeight="xl">
+            <>
+            <CssBaseline/>
+                <Container style={{ backgroundColor: "#101728", padding: "30px" }} maxWidth={false} disableGutters>
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "20px", }}>
                         <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" />
 
@@ -95,7 +96,7 @@ export default class LandingPage extends Component {
                             <TeamShareIcon/>
                         </Grid>
                         <Grid item xs={12} sm={12} md={9}>
-                        <ColorButton variant="contained">Get Started</ColorButton>
+                        <ColorButton variant="contained" onClick={() => window.location.href = "/signup"}>Get Started</ColorButton>
 
                         </Grid>
 
@@ -310,7 +311,7 @@ export default class LandingPage extends Component {
                     </Grid>
 
                 </Container>
-            </div>
+                </>
         )
     }
 }
