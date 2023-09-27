@@ -39,9 +39,9 @@ export default class LandingPage extends Component {
         return (
             <>
             <CssBaseline/>
-                <Container style={{ backgroundColor: "#101728", padding: "30px" }} maxWidth={false} disableGutters>
-                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "20px", }}>
-                        <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" />
+                <Container style={{ backgroundColor: "#101728", padding: "20px" }} maxWidth={false} disableGutters>
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "5px", }}>
+                        <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" onClick={()=>window.location.href="/"} />
 
                         <Typography
                             variant="h6"
@@ -58,7 +58,7 @@ export default class LandingPage extends Component {
                                 color: '#fff',
                                 textDecoration: 'none',
                                 fontSize: "22px",
-                                paddingLeft: "5px"
+                                paddingLeft: "10px"
                             }}
                         >
 
@@ -68,7 +68,7 @@ export default class LandingPage extends Component {
 
 
                     <Grid container spacing={2} style={{ margin: "40px 0 0 0" }}>
-                        <Grid item xs={12} sm={12} md={3} >
+                        <Grid item xs={12} sm={12} md={4} >
                             <Typography
                                 variant="h6"
                                 component="a"
@@ -91,15 +91,13 @@ export default class LandingPage extends Component {
                                 Store Share  Access 
                                 Anytime
                             </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={9}>
-                            <TeamShareIcon/>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={9}>
-                        <ColorButton variant="contained" onClick={() => window.location.href = "/signup"}>Get Started</ColorButton>
+                            <ColorButton variant="contained" style={{marginTop: "10px", padding: "10px 25px"}} onClick={() => window.location.href = "/signup"}>Get Started</ColorButton>
 
                         </Grid>
-
+                        <Grid item xs={12} sm={12} md={8}>
+                            <TeamShareIcon width="90%"/>
+                        </Grid>
+                        
                         <Grid item xs={12} sm={12} md={12} style={{ marginBottom: "100px" }}>
                             <Typography
                                 variant="h1"
@@ -131,7 +129,7 @@ export default class LandingPage extends Component {
                                     letterSpacing: '.3rem',
                                     color: '#fff',
                                     textDecoration: 'none',
-                                    padding: "15px",
+                                    padding: "15px 30px",
                                     marginTop: "30px",
                                     fontSize: "28px"
                                 }}
@@ -223,7 +221,7 @@ export default class LandingPage extends Component {
                                     letterSpacing: '.3rem',
                                     color: '#fff',
                                     textDecoration: 'none',
-                                    padding: "15px",
+                                    padding: "15px 30px 15px 30px",
                                     fontSize: "18px"
                                 }}
                             >
