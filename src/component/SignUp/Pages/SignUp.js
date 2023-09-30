@@ -9,16 +9,52 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    const email = data.get('email');
+    const password = data.get('password');
+    const fname = data.get('firstName');
+    const lname = data.get('lastName');
+
+
+        const response = await fetch('http://localhost:8181/api/auth/createuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password, fname, lname })
+        });
+        const json = await response.json();
+        if (json.error) {
+            toast.error(json.error);
+        }
+        else if (json.errors) {
+            json.errors.forEach(error => {
+                toast.error(error.msg);
+            });
+        }
+        else if (json.authtoken) {
+            localStorage.setItem('auth-token', json.authtoken);
+            // toast.success(json.authtoken);
+            navigate(`/dashboard`);
+        }
+        else {
+            toast.error('Internal Server Error');
+        }
   };
 
   return (
@@ -101,6 +137,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
+        <ToastContainer toastStyle={{ backgroundColor: "#202d40", color: 'white' }} />
 
       </Container>
   )
