@@ -42,6 +42,11 @@ To deploy this project navigate to the frontend folder and run
 
 Navigate to `http://localhost:3000/`
 
+### Setting up mongoDB
+
+- Install and setup MongoDB by following official documentation
+- Start MongoDBCompass and Connect to mongodb://localhost:27017
+
 ## Feedback
 
 If you have any feedback, please reach out to us at ravina.deogadkar@gmail.com
