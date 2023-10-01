@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import SnappitIcon from '../../images/snappit-icon.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -58,6 +59,35 @@ export default function SignUp() {
   };
 
   return (
+    <>
+            <CssBaseline/>
+                <Container style={{ backgroundColor: "#101728", padding: "20px" }} maxWidth={false} disableGutters>
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "5px", }}>
+                        <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" onClick={()=>window.location.href="/"} />
+
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href="/"
+                            xs="2"
+                            sx={{
+                                mr: 2,
+                                display: 'flex',
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: '#fff',
+                                textDecoration: 'none',
+                                fontSize: "22px",
+                                paddingLeft: "10px"
+                            }}
+                        >
+
+                            Snappit
+                        </Typography>
+                    </Box>
+                    </Container>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
         <Box
@@ -140,5 +170,6 @@ export default function SignUp() {
         <ToastContainer toastStyle={{ backgroundColor: "#202d40", color: 'white' }} />
 
       </Container>
+      </>
   )
 }

@@ -1,8 +1,8 @@
 import './App.css';
-import LandingPage from './component/LandingPage/Pages/LandingPage';
+import LandingPage from './pages/LandingPage/LandingPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SignUp from './component/SignUp/Pages/SignUp';
-import { Dashboard } from './component/Dashboard/Pages/Dashboard';
+import SignUp from './pages/SignUp/SignUp';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (

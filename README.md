@@ -42,6 +42,8 @@ To deploy this project navigate to the frontend folder and run
 
 Navigate to `http://localhost:3000/`
 
+![Landing Page](images/landing-page.png)
+
 ## Feedback
 
 If you have any feedback, please reach out to us at ravina.deogadkar@gmail.com

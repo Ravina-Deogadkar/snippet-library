@@ -10,11 +10,11 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import SnappitIcon from '../../../images/snappit-icon.png';
-import {ReactComponent as SaveIcon} from "../../../images/snappit-save-code.svg";
-import {ReactComponent as ShareIcon} from "../../../images/snappit-share-code.svg";
-import {ReactComponent as AccessIcon} from "../../../images/snappit-access.svg";
-import {ReactComponent as TeamShareIcon} from "../../../images/team-share.svg";
+import SnappitIcon from '../../images/snappit-icon.png';
+import {ReactComponent as SaveIcon} from "../../images/snappit-save-code.svg";
+import {ReactComponent as ShareIcon} from "../../images/snappit-share-code.svg";
+import {ReactComponent as AccessIcon} from "../../images/snappit-access.svg";
+import {ReactComponent as TeamShareIcon} from "../../images/team-share.svg";
 
 import "./LandingPage.css"
 
