@@ -6,6 +6,20 @@
 
 Please give this repo a ⭐ it really helps us!
 
+### Setup
+
+1. [Fork](https://github.com/Ravina-Deogadkar/snippet-library/fork) this repo by clicking the fork button in the top right to get started.
+2. Clone the project, you can use the following command:
+
+   ```bash
+   git clone https://github.com/<your-github-username>/Whisper
+   ```
+3. Navigate to the project directory
+
+   ```bash
+   cd snippet-library
+   ```
+
 ### Deploying Backend
 
 To deploy this project navigate to the backend folder and run
