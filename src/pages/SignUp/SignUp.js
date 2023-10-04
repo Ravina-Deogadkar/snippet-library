@@ -13,13 +13,13 @@ import SnappitIcon from '../../images/snappit-icon.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import "../../styles/Header.css"
 
 
 export default function SignUp() {
   const navigate = useNavigate();
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -32,64 +32,68 @@ export default function SignUp() {
     const lname = data.get('lastName');
 
 
-        const response = await fetch('http://localhost:8181/api/auth/createuser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password, fname, lname })
-        });
-        const json = await response.json();
-        if (json.error) {
-            toast.error(json.error);
-        }
-        else if (json.errors) {
-            json.errors.forEach(error => {
-                toast.error(error.msg);
-            });
-        }
-        else if (json.authtoken) {
-            localStorage.setItem('auth-token', json.authtoken);
-            // toast.success(json.authtoken);
-            navigate(`/dashboard`);
-        }
-        else {
-            toast.error('Internal Server Error');
-        }
+    const response = await fetch('http://localhost:8181/api/auth/createuser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, fname, lname })
+    });
+    const json = await response.json();
+    if (json.error) {
+      toast.error(json.error);
+    }
+    else if (json.errors) {
+      json.errors.forEach(error => {
+        toast.error(error.msg);
+      });
+    }
+    else if (json.authtoken) {
+      localStorage.setItem('auth-token', json.authtoken);
+      // toast.success(json.authtoken);
+      navigate(`/dashboard`);
+    }
+    else {
+      toast.error('Internal Server Error');
+    }
   };
 
   return (
     <>
-            <CssBaseline/>
-                <Container style={{ backgroundColor: "#101728", padding: "20px" }} maxWidth={false} disableGutters>
-                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ paddingTop: "5px", }}>
-                        <img xs="2" alt="logo" src={SnappitIcon} height="30px" width="35px" onClick={()=>window.location.href="/"} />
-
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            xs="2"
-                            sx={{
-                                mr: 2,
-                                display: 'flex',
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: '#fff',
-                                textDecoration: 'none',
-                                fontSize: "22px",
-                                paddingLeft: "10px"
-                            }}
-                        >
-
-                            Snappit
-                        </Typography>
-                    </Box>
-                    </Container>
-    <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Container className = 'hdr-root' style={{ backgroundColor: "#101728" }} maxWidth="xl" >
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, marginTop:'15px' }}>
+          <div className="hdr-title" style={{ display: 'flex', flexDirection: 'row' }}>
+
+            <img className='hdr-logo' alt="logo" src={SnappitIcon} height="30px" width="35px" onClick={() => window.location.href = "/"} />
+
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: "22px",
+                paddingLeft: "10px",
+                marginTop: "auto",
+                marginBottom: "auto"
+  
+              }}
+            >
+              Snappit
+            </Typography>
+          </div>
+        </Box>
+      </Container>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -154,7 +158,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              style={{backgroundColor: "#101728"}}
+              style={{ backgroundColor: "#101728" }}
             >
               Sign Up
             </Button>
@@ -170,6 +174,6 @@ export default function SignUp() {
         <ToastContainer toastStyle={{ backgroundColor: "#202d40", color: 'white' }} />
 
       </Container>
-      </>
+    </>
   )
 }

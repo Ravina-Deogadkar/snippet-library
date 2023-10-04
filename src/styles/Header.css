@@ -1,0 +1,11 @@
+.hdr-logo{
+    margin: auto 5px auto 0px;
+}
+.hdr-title{
+    margin-left: 50px;
+}
+
+.hdr-root {
+    height: 80px;
+    padding: 5px;
+}
