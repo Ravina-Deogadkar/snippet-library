@@ -1,50 +1,50 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import DeveloperModeRoundedIcon from '@mui/icons-material/DeveloperModeRounded';
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import SnappitIcon from '../images/snappit-icon.png';
+import '../styles/Header.css';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['About us', 'Blog', 'Sign in'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+
+//const pages = ['Analytics', 'About us', 'Home'];
+
+const pages = {
+  analytics: 'Analytics',
+  aboutus: 'About us',
+  dashboard:'Home'
+}
+
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const [isAuthenticated, setIsAuthenticated] = React.useState(true);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const handleCloseNavMenu = (e) => {
+    console.log("Menu clicked"+ e.currentTarget)
 
-  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-        <Avatar sx={{ bgcolor: "#1976d2"}} variant="rounded">
-            <DeveloperModeRoundedIcon />
-        </Avatar>
+    <Container className = 'hdr-root' style={{ backgroundColor: "#101728" }} maxWidth="xl" >
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, marginTop:'10px' }}>
+        <div className="hdr-title" style={{display:'flex', flexDirection: 'row' }}>
+
+          <img className='hdr-logo' alt="logo" src={SnappitIcon} height="30px" width="35px" onClick={() => window.location.href = "/"} />
+
           <Typography
             variant="h6"
             noWrap
@@ -56,13 +56,18 @@ function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#fff',
               textDecoration: 'none',
+              fontSize: "22px",
+              paddingLeft: "10px",
+              marginTop: "auto",
+              marginBottom: "auto"
+
             }}
           >
             Snappit
           </Typography>
-
+        </div>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -92,9 +97,9 @@ function Header() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {Object.keys(pages).map((page) => (
+                <MenuItem key={pages[page]} onClick={handleCloseNavMenu}>
+                  <Typography href={"/"+page} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -118,52 +123,19 @@ function Header() {
           >
             Snappit
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          <Box sx={{ flexGrow: 1, flexDirection: "row-reverse", marginRight:"50px", display: { xs: 'none', md: 'flex' } }}>
+            {Object.keys(pages).map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={()=> window.location.href = "/"+page}
+                sx={{ my: 2, color: 'white', display: 'block', margin:'5px' }}
               >
-                {page}
+                {pages[page]}
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{ bgcolor: "#1976d2"}} variant="rounded">
-                    <PersonRoundedIcon/>
-                </Avatar>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+      </Box>
+    </Container>
   );
 }
 export default Header;
