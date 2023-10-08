@@ -4,8 +4,15 @@ import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
+import CancelIcon from "@mui/icons-material/Cancel"; // Importing the Cancel icon
 
 const Popup = ({ open, handleClose }) => {
+  const tags = [
+    { id: 1, name: "Angular", color: "error" },
+    { id: 1, name: "Vue", color: "success" },
+    { id: 1, name: "React", color: "primary" },
+  ];
+
   return (
     <Modal
       open={open}
@@ -42,20 +49,9 @@ const Popup = ({ open, handleClose }) => {
           rows={4}
           variant="filled"
         />
-        <div
-          style={{
-            display: "flex",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-          }}
-        >
-          <Chip label={"Angular"} color="primary" />
-          <Chip label={"Java"} color="success" />
-          <Chip label={"React"} color="warning" />
-        </div>
         <TextField
           id="outlined-basic"
-          label="Star Count"
+          label="Tags"
           variant="filled"
           size="small"
         />
@@ -63,22 +59,23 @@ const Popup = ({ open, handleClose }) => {
           style={{
             display: "flex",
             gap: "0.5rem",
+            flexWrap: "wrap",
           }}
         >
-          <TextField
-            id="outlined-basic"
-            label="Date Created"
-            variant="filled"
-            size="small"
-          />
-          <TextField
-            id="outlined-basic"
-            label="Date Modified"
-            variant="filled"
-            size="small"
-          />
+          {tags.map((item) => (
+            <Chip
+              key={item.id}
+              label={item.name}
+              color={item.color}
+              onDelete={() => {}}
+              deleteIcon={<CancelIcon />}
+            />
+          ))}
         </div>
-        <Button sx={{ alignSelf: "flex-end" }}>Save</Button>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button sx={{ marginLeft: "0.5rem" }}>Cancel</Button>
+          <Button sx={{ marginLeft: "0.5rem" }}>Save</Button>
+        </div>
       </Box>
     </Modal>
   );
