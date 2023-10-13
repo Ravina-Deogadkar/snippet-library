@@ -1,8 +1,9 @@
 import './App.css';
-import LandingPage from './pages/LandingPage/LandingPage';
+import LandingPage from './pages/landingPage/LandingPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SignUp from './pages/SignUp/SignUp';
-import Dashboard from './pages/Dashboard/Dashboard';
+import SignUp from './pages/auth/SignUp';
+import Login from './pages/auth/Login';
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
         </Routes>
