@@ -22,15 +22,11 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
     const email = data.get('email');
     const password = data.get('password');
     const fname = data.get('firstName');
     const lname = data.get('lastName');
-
 
     const response = await fetch('http://localhost:8181/api/auth/createuser', {
       method: 'POST',
@@ -51,7 +47,7 @@ export default function SignUp() {
     else if (json.authtoken) {
       localStorage.setItem('auth-token', json.authtoken);
       // toast.success(json.authtoken);
-      navigate(`/dashboard`);
+      navigate(`/login`);
     }
     else {
       toast.error('Internal Server Error');
@@ -164,7 +160,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
