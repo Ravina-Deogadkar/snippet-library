@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
 import CancelIcon from "@mui/icons-material/Cancel"; // Importing the Cancel icon
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const Popup = ({ open, handleClose }) => {
   const tags = [
@@ -49,12 +51,17 @@ const Popup = ({ open, handleClose }) => {
           rows={4}
           variant="filled"
         />
-        <TextField
-          id="outlined-basic"
-          label="Tags"
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={null}
           variant="filled"
-          size="small"
-        />
+          onChange={() => {}}
+        >
+          <MenuItem value="html">Html</MenuItem>
+          <MenuItem value="div">Div</MenuItem>
+          <MenuItem value="section">Section</MenuItem>
+        </Select>
         <div
           style={{
             display: "flex",
