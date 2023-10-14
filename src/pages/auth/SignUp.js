@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import "../../styles/Header.css"
 
+const {REACT_APP_SERVER_URL} = process.env;
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function SignUp() {
     const fname = data.get('firstName');
     const lname = data.get('lastName');
 
-    const response = await fetch('http://localhost:8181/api/auth/createuser', {
+    const response = await fetch(REACT_APP_SERVER_URL +'/api/auth/createuser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
