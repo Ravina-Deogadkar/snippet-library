@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import "../../styles/Header.css"
+const {REACT_APP_SERVER_URL} = process.env;
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function Login() {
     const email = data.get('email');
     const password = data.get('password');
 
-    const response = await fetch('http://localhost:8181/api/auth/login', {
+    const response = await fetch(REACT_APP_SERVER_URL + '/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
