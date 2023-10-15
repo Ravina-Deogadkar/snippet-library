@@ -8,12 +8,42 @@ import CancelIcon from "@mui/icons-material/Cancel"; // Importing the Cancel ico
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+import { toast } from 'react-toastify';
+const REACT_APP_SERVER_URL = "http://localhost:8181";
+
 const Popup = ({ open, handleClose }) => {
   const tags = [
     { id: 1, name: "Angular", color: "error" },
     { id: 1, name: "Vue", color: "success" },
     { id: 1, name: "React", color: "primary" },
   ];
+
+  const handleSave = async (e) => {
+    const title = document.getElementById('outlined-basic').value;
+    const codeSnippet = document.getElementById('filled-multiline-static').value;
+    const selection = document.getElementById('demo-simple-select').value;
+
+    const response = await fetch(REACT_APP_SERVER_URL + '/api/snippets/createsnippet', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title, code: codeSnippet, starCount: selection })
+    });
+    const json = await response.json();
+    if (json.error) {
+      toast.error(json.error);
+    }
+    else if (json.errors) {
+      json.errors.forEach(error => {
+        toast.error(error.msg);
+      });
+    }
+    else {
+      toast.error('Internal Server Error');
+    }
+
+  }
 
   return (
     <Modal
@@ -81,7 +111,7 @@ const Popup = ({ open, handleClose }) => {
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button sx={{ marginLeft: "0.5rem" }}>Cancel</Button>
-          <Button sx={{ marginLeft: "0.5rem" }}>Save</Button>
+          <Button onClick={handleSave} sx={{ marginLeft: "0.5rem" }}>Save</Button>
         </div>
       </Box>
     </Modal>
