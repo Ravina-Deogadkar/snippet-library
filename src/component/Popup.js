@@ -19,16 +19,16 @@ const Popup = ({ open, handleClose }) => {
   ];
 
   const handleSave = async (e) => {
-    const title = document.getElementById('outlined-basic').value;
-    const codeSnippet = document.getElementById('filled-multiline-static').value;
-    const selection = document.getElementById('demo-simple-select').value;
+    const snippetTitle = document.getElementById('outlined-basic').value;
+    const snippetCode = document.getElementById('filled-multiline-static').value;
+    const snippetTag = document.getElementById('demo-simple-select').value;
 
     const response = await fetch(REACT_APP_SERVER_URL + '/api/snippets/createsnippet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, code: codeSnippet, starCount: selection })
+      body: JSON.stringify({ title: snippetTitle, code: snippetCode, starCount: snippetTag })
     });
     const json = await response.json();
     if (json.error) {
