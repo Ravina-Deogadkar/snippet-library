@@ -12,7 +12,7 @@ Please give this repo a ⭐ it really helps us!
 2. Clone the project, you can use the following command:
 
    ```bash
-   git clone https://github.com/<your-github-username>/Whisper
+   git clone https://github.com/<your-github-username>/snippet-library
    ```
 3. Navigate to the project directory
 
