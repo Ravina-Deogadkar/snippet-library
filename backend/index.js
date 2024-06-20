@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/snippet', require('./routes/snippet'));
+app.use('/api/snippets', require('./routes/snippets'));
 
 // Starting The Server
 app.listen(PORT, () => {
