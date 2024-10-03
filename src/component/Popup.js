@@ -2,18 +2,47 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
-import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
 import CancelIcon from "@mui/icons-material/Cancel"; // Importing the Cancel icon
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import { ToastContainer, toast } from 'react-toastify';
 
-const Popup = ({ open, handleClose }) => {
-  const tags = [
-    { id: 1, name: "Angular", color: "error" },
-    { id: 1, name: "Vue", color: "success" },
-    { id: 1, name: "React", color: "primary" },
-  ];
+const {REACT_APP_SERVER_URL} = process.env;
+
+
+const Popup = ({ open, handleClose, showToast }) => {
+  const handleSubmit = async(e) =>{
+
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    console.log({
+      title: data.get('title'),
+      description: data.get('description'),
+    });
+    const title = data.get('title');
+    const description = data.get('description');
+    const authorId = "1";
+
+    const response = await fetch(REACT_APP_SERVER_URL + '/api/snippet/createsnippet', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title, description, authorId })
+    });
+    const json = await response.json();
+    if (json.error) {
+      showToast(false, json.error);
+    }
+    else if (json.errors) {
+      json.errors.forEach(error => {
+        showToast(false, error.msg);
+
+      });
+    }else{
+      showToast(true, "New snippet added successfully");
+      handleClose();
+    }
+  }
 
   return (
     <Modal
@@ -37,51 +66,26 @@ const Popup = ({ open, handleClose }) => {
           flexDirection: "column",
           gap: "1rem",
         }}
+        component="form" noValidate onSubmit={handleSubmit}
       >
         <TextField
-          id="outlined-basic"
+          id="title"
           label="Title"
           variant="filled"
           size="small"
+          name="title"
         />
         <TextField
-          id="filled-multiline-static"
-          label="Code Snippet"
+          id="description"
+          label="Description"
           multiline
           rows={4}
           variant="filled"
+          name="description"
         />
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={null}
-          variant="filled"
-          onChange={() => {}}
-        >
-          <MenuItem value="html">Html</MenuItem>
-          <MenuItem value="div">Div</MenuItem>
-          <MenuItem value="section">Section</MenuItem>
-        </Select>
-        <div
-          style={{
-            display: "flex",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-          }}
-        >
-          {tags.map((item) => (
-            <Chip
-              key={item.id}
-              label={item.name}
-              color={item.color}
-              onDelete={() => {}}
-              deleteIcon={<CancelIcon />}
-            />
-          ))}
-        </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button sx={{ marginLeft: "0.5rem" }}>Cancel</Button>
-          <Button sx={{ marginLeft: "0.5rem" }}>Save</Button>
+          <Button sx={{ marginLeft: "0.5rem" }} onClick={handleClose}>Cancel</Button>
+          <Button sx={{ marginLeft: "0.5rem" }} type="submit">Save</Button>
         </div>
       </Box>
     </Modal>

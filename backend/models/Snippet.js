@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const SnippetSchema = new Schema({
-    snippetId: {
-        type: String,
-        required: true
-    },
     title: {
         type: String,
         required: true
@@ -20,10 +16,14 @@ const SnippetSchema = new Schema({
     },
     modifiedDate: {
         type: String,
-        required: true
+        required: false
     },
     starCount: {
         type: Number,
+        required: false
+    },
+    authorId: {
+        type: String,
         required: true
     }
 }, {timestamps: true});
