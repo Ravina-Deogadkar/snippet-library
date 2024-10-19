@@ -4,12 +4,14 @@ import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CancelIcon from "@mui/icons-material/Cancel"; // Importing the Cancel icon
-import { ToastContainer, toast } from 'react-toastify';
 
 const {REACT_APP_SERVER_URL} = process.env;
 
 
 const Popup = ({ open, handleClose, showToast }) => {
+
+  const [attachment, setAttachment] = React.useState(null);
+
   const handleSubmit = async(e) =>{
 
     e.preventDefault();
@@ -17,6 +19,7 @@ const Popup = ({ open, handleClose, showToast }) => {
     console.log({
       title: data.get('title'),
       description: data.get('description'),
+      attachment:attachment
     });
     const title = data.get('title');
     const description = data.get('description');
@@ -27,7 +30,7 @@ const Popup = ({ open, handleClose, showToast }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, description, authorId })
+      body: JSON.stringify({ title, description, attachment, authorId })
     });
     const json = await response.json();
     if (json.error) {
@@ -42,6 +45,20 @@ const Popup = ({ open, handleClose, showToast }) => {
       showToast(true, "New snippet added successfully");
       handleClose();
     }
+  }
+
+  const fileUpload = async(e)=>{
+    e.preventDefault();
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(e.target.files[0]);
+    fileReader.onload = (ev) => {
+      setAttachment({
+        data: ev.target.result, 
+        filename: e.target.files[0].name});
+    };
+    showToast(true, "file uploaded successfully");
+
   }
 
   return (
@@ -83,6 +100,19 @@ const Popup = ({ open, handleClose, showToast }) => {
           variant="filled"
           name="description"
         />
+        <input
+          accept="image/*"
+          style={{ display: 'none' }}
+          id="attachment"
+          multiple
+          type="file"
+          onChange={fileUpload}
+        />
+        <label htmlFor="attachment">
+          <Button variant="contained" component="span" >
+            Upload
+          </Button>
+        </label>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button sx={{ marginLeft: "0.5rem" }} onClick={handleClose}>Cancel</Button>
           <Button sx={{ marginLeft: "0.5rem" }} type="submit">Save</Button>

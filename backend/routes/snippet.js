@@ -10,7 +10,7 @@ const fetchuser = require('../middleware/fetchuser');
 // Route 4: Getting all user specific notes: POST: http://localhost:8181/api/snippet/getallsnippets. Login Required
 router.post('/getallsnippets', async (req, res) => {
     try {
-        const allSnippets = await SnippetSchema.find({ authorId: req.body.authorId}).select({snippetId : 1, title : 1, code : 1, modifiedDate : 1, creationDate: 1 }).sort({ modifiedDate: -1 });
+        const allSnippets = await SnippetSchema.find({ authorId: req.body.authorId}).select({snippetId : 1, title : 1, code : 1, attachment:1, modifiedDate : 1, creationDate: 1 }).sort({ modifiedDate: -1 });
         res.status(200).json(allSnippets);
 
     } catch (error) {
@@ -23,6 +23,7 @@ router.post('/getallsnippets', async (req, res) => {
 router.post('/createsnippet', [
     body('title', "Snippet title should be atleast 4 characters long").isLength({ min: 4 }),
     body('description'),
+    body('attachment'),
     body('authorId'),
 
 ], async (req, res) => {
@@ -37,10 +38,10 @@ router.post('/createsnippet', [
         if (checkMultipleSnippets) {
             return res.status(403).json({ error: "A Snippet with this title already exists" });
         }
-        
         const newSnippet = await SnippetSchema.create({
             title: req.body.title,
             code: req.body.description,
+            attachment: req.body.attachment,
             creationDate: Date.now(),
             modifiedDate: Date.now(),
             starCount: 0,

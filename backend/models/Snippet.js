@@ -10,6 +10,16 @@ const SnippetSchema = new Schema({
         type: String,
         required: true
     },
+    attachment: {
+        data: {
+            type: Buffer,
+            required: true
+        },
+        filename: {
+            type: String,
+            required: true
+        }
+    },
     creationDate: {
         type: String,
         required: true
